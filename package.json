@@ -4,7 +4,8 @@
   "description": "This project searches and reads hierarchically a configuration file in a path provided by params. ",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha \"src/**/*-test.js\""
+    "test": "nyc --reporter=html --reporter=text mocha \"src/**/*-test.js\"",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,11 @@
   "homepage": "https://github.com/ByIvo/project-info#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.4.1",
     "sinon": "^4.2.2"
   }
 }
