@@ -50,6 +50,6 @@ describe("index.js", function () {
     var projectProperties = projectInfo.from(fakeRealPath);
 
     expect(projectProperties).to.deep.equal({name: 'fake'});
-    expect(propertiesCreator.create.getCall(0).args[1]).to.equal('project.info.json');
+    expect(propertiesCreator.create.getCall(0).args[1]).to.equal('.project.info.json');
   });
 });
