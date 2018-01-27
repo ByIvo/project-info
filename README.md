@@ -6,4 +6,4 @@
 
 This project searches and reads hierarchically a configuration file in a path provided by params.
 
-Documention and Installation is coming soon
+Documention and Installation are coming soon
