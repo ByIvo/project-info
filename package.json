@@ -1,0 +1,24 @@
+{
+  "name": "project-info",
+  "version": "0.0.1",
+  "description": "This project searches and reads hierarchically a configuration file in a path provided by params. ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ByIvo/project-info.git"
+  },
+  "keywords": [
+    "project",
+    "info",
+    "metadata"
+  ],
+  "author": "\"Ivo Batistela <irbatistela@gmail.com> (http://byivo.rocks)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ByIvo/project-info/issues"
+  },
+  "homepage": "https://github.com/ByIvo/project-info#readme"
+}
