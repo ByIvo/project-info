@@ -12,16 +12,26 @@ function readFrom(path) {
     var isFile = stat.isFile();
 
     if(isFile) {
-      var fileContent = fs.readFileSync(path);
+      var parsedContent = parseFileContent(path);
 
-      try{
-        return JSON.parse(fileContent);
-      }catch(err) {
-        var message = "The config file in path '" + path + "'' needs to be a json file.";
-        throw Error(message);
+      if(parsedContent.name) {
+        return parsedContent;
+      } else {
+        throw Error('The config file in path \'' + path + '\' does not have a property \'name\', which one is required.');
       }
     }
   }
 
   return false;
+}
+
+function parseFileContent(path) {
+  try{
+    var fileContent = fs.readFileSync(path);
+
+    return JSON.parse(fileContent);
+  }catch(err) {
+    var message = 'The config file in path \'' + path + '\' needs to be a json file.';
+    throw Error(message);
+  }
 }

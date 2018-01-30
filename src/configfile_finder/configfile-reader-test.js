@@ -12,6 +12,7 @@ describe('Configfile reader', function () {
   var directoryPath = path.join('fake', 'path');
   var configFilePath = path.join('fake', 'path', 'project-info.json');
   var notJsonFilePath = path.join('fake', 'path', 'not-json-file.props');
+  var notValidConfigfilePath = path.join('fake', 'path', 'invalid-project-info.json');
 
   beforeEach(function () {
     var fsExistsSyncStub = sinon.stub(fs, 'existsSync');
@@ -22,17 +23,23 @@ describe('Configfile reader', function () {
     fsExistsSyncStub.withArgs(directoryPath).returns(true);
     fsExistsSyncStub.withArgs(configFilePath).returns(true);
     fsExistsSyncStub.withArgs(notJsonFilePath).returns(true);
+    fsExistsSyncStub.withArgs(notValidConfigfilePath).returns(true);
 
     fsStat.withArgs(directoryPath).returns(fakeFileStatWithReturnAs(false));
     fsStat.withArgs(configFilePath).returns(fakeFileStatWithReturnAs(true));
     fsStat.withArgs(notJsonFilePath).returns(fakeFileStatWithReturnAs(true));
+    fsStat.withArgs(notValidConfigfilePath).returns(fakeFileStatWithReturnAs(true));
 
     fsReadFile.withArgs(configFilePath).returns(
-      '{"name": "Project"}'
+      JSON.stringify({"name": "Project"})
     );
 
     fsReadFile.withArgs(notJsonFilePath).returns(
       "name=Project"
+    );
+
+    fsReadFile.withArgs(notValidConfigfilePath).returns(
+      JSON.stringify({"name": ""})
     );
 
   });
@@ -68,7 +75,13 @@ describe('Configfile reader', function () {
   it('If the file content is not in a json format, throw an Exception', function () {
     expect(function () {
       var configfile = configfileReader.readFrom(notJsonFilePath);
-    }).to.throw("The config file in path '" + notJsonFilePath + "'' needs to be a json file.");
+    }).to.throw('The config file in path \'' + notJsonFilePath + '\' needs to be a json file.');
+  });
+
+  it('If the config file does not have a name property, it is invalid and an exception should be thrown', function () {
+    expect(function () {
+      var configfile = configfileReader.readFrom(notValidConfigfilePath);
+    }).to.throw('The config file in path \'' + notValidConfigfilePath + '\' does not have a property \'name\', which one is required.');
   });
 });
 
