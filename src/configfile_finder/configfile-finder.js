@@ -16,16 +16,17 @@ function readProjectInfoAndKeepSearching(dirPath, configFilename, isFirstCall) {
     base: configFilename
   });
 
-  if(!fs.existsSync(configfilePath)) {
-    throw Error('The path \''+ configfilePath + '\' does not exists');
+  if(fs.existsSync(configfilePath)) {
+
+    var projectInfo =  configfileReader.readFrom(configfilePath);
+
+    projectInfo.root = isFirstCall;
+    projectInfo.branches = readChildrenFrom(dirPath, configFilename);
+
+    return projectInfo;
+  } else {
+    return false;
   }
-
-  var projectInfo =  configfileReader.readFrom(configfilePath);
-  
-  projectInfo.root = isFirstCall;
-  projectInfo.branches = readChildrenFrom(dirPath, configFilename);
-
-  return projectInfo;
 }
 
 function readChildrenFrom(dirPath, configFilename) {

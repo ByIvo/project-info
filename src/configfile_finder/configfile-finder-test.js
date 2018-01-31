@@ -61,10 +61,10 @@ describe('Configfile finder', function () {
     fs.readdirSync.restore();
   });
 
-  it('If the file does not exists, throw an exception', function () {
-    expect(function () {
-      configfileFinder.from(fakeNoConfigfilePath, configFilename);
-    }).to.throw('The path \''+ path.join(fakeNoConfigfilePath, configFilename) + '\' does not exists');
+  it('If the file does not exists, just ignore it and return false', function () {
+    var projectInfo = configfileFinder.from(fakeNoConfigfilePath, configFilename);
+
+    expect(projectInfo).to.equal(false);
   });
 
   it('Should read the file as property object and returns it', function () {
