@@ -27,8 +27,7 @@ function readFrom(path) {
 
 function parseFileContent(path) {
   try{
-    var fileContent = fs.readFileSync(path);
-
+    var fileContent = fs.readFileSync(path, {encoding: 'UTF-8'});
     return JSON.parse(fileContent);
   }catch(err) {
     console.error(err);

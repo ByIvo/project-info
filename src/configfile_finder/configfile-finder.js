@@ -37,7 +37,9 @@ function readChildrenFrom(dirPath, configFilename) {
     var childPath = path.join(dirPath, childrenPaths[i]);
     var child = readProjectInfoAndKeepSearching(childPath, configFilename, false);
 
-    children.push(child);
+    if(child) {
+      children.push(child);      
+    }
   }
 
   return children;
