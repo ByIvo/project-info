@@ -21,8 +21,9 @@ function readProjectInfoAndKeepSearching(dirPath, configFilename, isFirstCall) {
     var projectInfo =  configfileReader.readFrom(configfilePath);
 
     projectInfo.root = isFirstCall;
-    projectInfo.branches = readChildrenFrom(dirPath, configFilename);
     projectInfo.dir = configfilePath;
+    projectInfo.branches = readChildrenFrom(dirPath, configFilename);
+    
     return projectInfo;
   } else {
     return false;
