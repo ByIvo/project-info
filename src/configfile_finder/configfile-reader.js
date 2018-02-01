@@ -31,6 +31,7 @@ function parseFileContent(path) {
 
     return JSON.parse(fileContent);
   }catch(err) {
+    console.error(err);
     var message = 'The config file in path \'' + path + '\' needs to be a json file.';
     throw Error(message);
   }

@@ -7,7 +7,7 @@ module.exports = {
 
 function from (path, configFilename) {
   var validPath = fs.existsSync(path);
-  configFilename = configFilename || '.project.info.json';
+  configFilename = configFilename || '.project-info.json';
 
   if(!validPath) {
     throw Error('Path "' + path + '" does not exists!');
