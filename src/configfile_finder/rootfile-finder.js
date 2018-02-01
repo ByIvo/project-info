@@ -10,14 +10,14 @@ function upwards(fromPath, configFilename) {
   var pathStat = fs.lstatSync(fromPath);
 
   if(pathStat.isFile()) {
-    fromPath = getUpwardsDirectory(fromPath);
+    fromPath = getUpwardsDirectory(fromPath).dir;
   }
 
   return findConfigfileIn(fromPath, configFilename);
 }
 
 function getUpwardsDirectory(fromPath) {
-  return path.parse(fromPath).dir;
+  return path.parse(fromPath);
 }
 
 function findConfigfileIn(fromPath, configFilename) {
@@ -35,11 +35,14 @@ function findConfigfileIn(fromPath, configFilename) {
 }
 
 function keepLookingUpwards(fromPath, configFilename) {
-  var nextDirectory = getUpwardsDirectory(fromPath);
+  var upwardsParsed = getUpwardsDirectory(fromPath);
 
-  if(nextDirectory) {
+  var nextDirectory = upwardsParsed.dir;
+  var rootFilesystemPath = upwardsParsed.root;
+
+  if(nextDirectory !== rootFilesystemPath) {
     return findConfigfileIn(nextDirectory, configFilename);
-  }else {
+  } else {
     throw Error('It was not able to find a file named ' + configFilename + ' in any upwards directory.');
   }
 }

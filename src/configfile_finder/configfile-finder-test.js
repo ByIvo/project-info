@@ -8,8 +8,8 @@ var configfileFinder = require('./configfile-finder.js');
 var configfileReader = require('./configfile-reader.js');
 
 describe('Configfile finder', function () {
-  var fakeNoConfigfilePath = path.join('fake', 'path');
-  var fakeRealConfigfilePath = path.join('fake', 'real', 'path');
+  var fakeNoConfigfilePath = path.join('/', 'fake', 'path');
+  var fakeRealConfigfilePath = path.join('/', 'fake', 'real', 'path');
   var configFilename = 'project-info.json';
 
   var fakeFirstChildPath = path.join(fakeRealConfigfilePath, 'child-one');

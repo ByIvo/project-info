@@ -8,13 +8,13 @@ var rootfileFinder = require('./rootfile-finder.js');
 var configfileReader = require('./configfile-reader.js');
 
 describe('Rootfile finder', function () {
-  var fakeFilePath = path.join('home', 'project', 'file.json');
-  var fakeProjectPath = path.join('home', 'project');
-  var fakeWithourConfigfilePath = path.join('home', 'project', 'subproject', 'folder');
-  var fakeSubprojectPath = path.join('home', 'project', 'subproject');
+  var fakeFilePath = path.join('/', 'home', 'project', 'file.json');
+  var fakeProjectPath = path.join('/', 'home', 'project');
+  var fakeWithourConfigfilePath = path.join('/', 'home', 'project', 'subproject', 'folder');
+  var fakeSubprojectPath = path.join('/', 'home', 'project', 'subproject');
   var fakeConfigFilename = ".project-info.json";
   var fakeConfigRootFilepath = path.join(fakeProjectPath, fakeConfigFilename);
-  var fakeNotExistingPath = path.join('home', 'notProject', 'path');
+  var fakeNotExistingPath = path.join('/', 'home', 'notProject', 'path');
 
   beforeEach(function () {
     var fsStub = sinon.stub(fs, 'lstatSync');

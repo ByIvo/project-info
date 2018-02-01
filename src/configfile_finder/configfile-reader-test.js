@@ -8,11 +8,11 @@ var configfileReader = require('./configfile-reader.js');
 
 describe('Configfile reader', function () {
 
-  var noConfigFilePath = path.join('fake', 'path', 'file.txt');
-  var directoryPath = path.join('fake', 'path');
-  var configFilePath = path.join('fake', 'path', 'project-info.json');
-  var notJsonFilePath = path.join('fake', 'path', 'not-json-file.props');
-  var notValidConfigfilePath = path.join('fake', 'path', 'invalid-project-info.json');
+  var noConfigFilePath = path.join('/', 'fake', 'path', 'file.txt');
+  var directoryPath = path.join('/', 'fake', 'path');
+  var configFilePath = path.join('/', 'fake', 'path', 'project-info.json');
+  var notJsonFilePath = path.join('/', 'fake', 'path', 'not-json-file.props');
+  var notValidConfigfilePath = path.join('/', 'fake', 'path', 'invalid-project-info.json');
 
   beforeEach(function () {
     var fsExistsSyncStub = sinon.stub(fs, 'existsSync');
