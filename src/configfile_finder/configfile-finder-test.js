@@ -74,6 +74,7 @@ describe('Configfile finder', function () {
       name: 'Project-child-one-grandchild',
       path: 'a',
       branches: [],
+      dir: path.join(fakeGranchildPath, configFilename),
       root: true
     });
   });
@@ -92,22 +93,26 @@ describe('Configfile finder', function () {
         name: 'Project',
         root: true,
         custom: 'property',
+        dir: path.join(fakeRealConfigfilePath, configFilename),
         branches: [
           {
             name: 'Project-child-one',
             root: false,
+            dir: path.join(fakeFirstChildPath, configFilename),
             branches: [
               {
                 name: 'Project-child-one-grandchild',
                 path: 'a',
                 branches: [],
-                root: false
+                root: false,
+                dir: path.join(fakeGranchildPath, configFilename),
               }
             ]
           }, {
             name: 'Project-child-two',
             root: false,
             path: 'a',
+            dir: path.join(fakeSecondChildPath, configFilename),
             branches: []
           }
         ]
@@ -120,14 +125,22 @@ describe('Configfile finder', function () {
     expect(projectInfo).to.deep.equal({
         name: 'Project-child-one',
         root: true,
+        dir: path.join(fakeFirstChildPath, configFilename),
         branches: [
           {
             name: 'Project-child-one-grandchild',
             path: 'a',
             branches: [],
-            root: false
+            root: false,
+            dir: path.join(fakeGranchildPath, configFilename),
           }
         ]
     });
+  });
+
+  it('Ensure the config file has the property dir, which one contains the full path of itself', function () {
+    var projectInfo = configfileFinder.from(fakeFirstChildPath, configFilename);
+
+    expect(projectInfo).to.have.property('dir', path.join(fakeFirstChildPath, configFilename));
   });
 });

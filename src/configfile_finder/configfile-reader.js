@@ -30,7 +30,6 @@ function parseFileContent(path) {
     var fileContent = fs.readFileSync(path, {encoding: 'UTF-8'});
     return JSON.parse(fileContent);
   }catch(err) {
-    console.error(err);
     var message = 'The config file in path \'' + path + '\' needs to be a json file.';
     throw Error(message);
   }

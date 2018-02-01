@@ -22,7 +22,7 @@ function readProjectInfoAndKeepSearching(dirPath, configFilename, isFirstCall) {
 
     projectInfo.root = isFirstCall;
     projectInfo.branches = readChildrenFrom(dirPath, configFilename);
-
+    projectInfo.dir = configfilePath;
     return projectInfo;
   } else {
     return false;
@@ -38,7 +38,7 @@ function readChildrenFrom(dirPath, configFilename) {
     var child = readProjectInfoAndKeepSearching(childPath, configFilename, false);
 
     if(child) {
-      children.push(child);      
+      children.push(child);
     }
   }
 
