@@ -4,6 +4,8 @@
 [![Coveralls github](https://img.shields.io/coveralls/github/ByIvo/project-info.svg)](https://coveralls.io/github/ByIvo/project-info)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+[![NPM](https://nodei.co/npm/project-info-scanner.png?downloads=true&downloadRank=true)](https://nodei.co/npm/project-info-scanner/)
+
 This project searches and reads hierarchically a configuration file in a path provided by params.
 
 ##  Getting started
