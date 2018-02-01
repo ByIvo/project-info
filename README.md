@@ -3,6 +3,7 @@
 [![Travis](https://img.shields.io/travis/ByIvo/project-info.svg)](https://travis-ci.org/ByIvo/project-info)
 [![Coveralls github](https://img.shields.io/coveralls/github/ByIvo/project-info.svg)](https://coveralls.io/github/ByIvo/project-info)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Known Vulnerabilities](https://snyk.io/test/github/byivo/project-info/badge.svg?targetFile=package.json)](https://snyk.io/test/github/byivo/project-info?targetFile=package.json)
 
 [![NPM](https://nodei.co/npm/project-info-scanner.png?downloads=true&downloadRank=true)](https://nodei.co/npm/project-info-scanner/)
 
