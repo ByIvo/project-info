@@ -39,3 +39,5 @@ projectInfoScanner.from('/any/path/you/want', 'your-custom-name.json');
 There are only two required properties: *name* and *root*
 * The *name* property is a string value and always should be informed
 * The *root* property is a boolean and its default value is true (its used to flag the stop when the module searches upwards for a config file)
+
+## 
