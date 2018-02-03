@@ -1,5 +1,5 @@
 {
-  "name": "project-info",
+  "name": "project-info-scanner",
   "version": "1.0.0",
   "description": "This project searches and reads hierarchically a configuration file in a path provided by params. ",
   "main": "src/index.js",
