@@ -16,6 +16,8 @@ describe('Configfile finder', function () {
   var fakeSecondChildPath = path.join(fakeRealConfigfilePath, 'child-two');
   var fakeGranchildPath = path.join(fakeFirstChildPath, 'grand-child');
 
+  var fakeJustAFolderPath = path.join(fakeGranchildPath, 'just-a-folder');
+
   beforeEach(function () {
     var existsStub = sinon.stub(fs, 'existsSync');
     var readFromStub = sinon.stub(configfileReader, 'readFrom');
@@ -26,11 +28,13 @@ describe('Configfile finder', function () {
     existsStub.withArgs(path.join(fakeFirstChildPath, configFilename)).returns(true);
     existsStub.withArgs(path.join(fakeSecondChildPath, configFilename)).returns(true);
     existsStub.withArgs(path.join(fakeGranchildPath, configFilename)).returns(true);
+    existsStub.withArgs(path.join(fakeJustAFolderPath, configFilename)).returns(true);
 
     readDirStub.withArgs(fakeRealConfigfilePath).returns(['child-one', 'child-two']);
     readDirStub.withArgs(fakeFirstChildPath).returns(['grand-child']);
     readDirStub.withArgs(fakeSecondChildPath).returns([]);
-    readDirStub.withArgs(fakeGranchildPath).returns([]);
+    readDirStub.withArgs(fakeGranchildPath).returns(['just-a-folder']);
+    readDirStub.withArgs(fakeJustAFolderPath).returns([]);
 
     readFromStub.withArgs(path.join(fakeRealConfigfilePath, configFilename)).returns({
       name: 'Project',
@@ -53,6 +57,10 @@ describe('Configfile finder', function () {
       name: 'Project-child-one-grandchild',
       path: 'a'
     });
+
+    readFromStub.withArgs(path.join(fakeJustAFolderPath, configFilename)).returns(false);
+
+    readFromStub.withArgs(path.join(fakeNoConfigfilePath, configFilename)).returns(false);
   });
 
   afterEach(function () {
@@ -69,6 +77,20 @@ describe('Configfile finder', function () {
 
   it('Should read the file as property object and returns it', function () {
     var projectInfo = configfileFinder.from(fakeGranchildPath, configFilename);
+
+    expect(projectInfo).to.deep.equal({
+      name: 'Project-child-one-grandchild',
+      path: 'a',
+      branches: [],
+      dir: path.join(fakeGranchildPath, configFilename),
+      root: true
+    });
+  });
+
+  it('Should ignore and do not add to branches when configfile-reader returns false', function () {
+    var projectInfo = configfileFinder.from(fakeGranchildPath, configFilename);
+
+    expect(configfileReader.readFrom.getCall(1).args[0]).to.equal(path.join(fakeJustAFolderPath, configFilename));
 
     expect(projectInfo).to.deep.equal({
       name: 'Project-child-one-grandchild',
