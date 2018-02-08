@@ -47,14 +47,14 @@ The config file should always be written with JSON syntax. Its default name is *
 ### Restricted properties
 
 There are only two required properties:
-* __name__: A required string property that must contains the project name (An error is thrown if it's empty or not provided)
-* __root__: It's only required in the root config file and must contains the value *true*; If not provided, the package will consider as non root file, even if it was the last existing one in seach process.
+  * __name__: A required string property that must contains the project name (An error is thrown if it's empty or not provided)
+  * __root__: It's only required in the root config file and must contains the value *true*; If not provided, the package will consider as non root file, even if it was the last existing one in seach process.
 
 Besides those required properties, we have another couple that are created when the config file is read:
-*__dir__: A string containing the full path to config file itself.
-*__branches__: An array containing others config files found in children folder (and it keeps going search whenever a child path contains a config file)
+* __dir__: A string containing the full path to config file itself.
+* __branches__: An array containing others config files found in children folder (and it keeps going search whenever a child path contains a config file)
 
-__Obs:__ If you set manually any of this properties (dir and branches), the package will overwritten them with the correct values.
+__Obs:__ If you manually set any of this properties (*dir* and *branches*), the package will overwrite them with the correct values.
 
 ### Custom properties
 Respecting the JSON syntax, you can add any custom property you want and it will be included in the final output.
@@ -63,4 +63,4 @@ if you want a detailed example, see this [GIST](https://gist.github.com/ByIvo/ec
 
 ## How to contribute
 
-Just create a pull request that passes in build process (see [travis-ci](https://travis-ci.org/ByIvo/project-info)) and maximum descreases the coverage percentage by 10%.
+Just create a pull request that passes in build process (see [travis-ci](https://travis-ci.org/ByIvo/project-info)) and maximum descreases the [coverage percentage](https://coveralls.io/github/ByIvo/project-info) by 10%.
