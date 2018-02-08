@@ -42,7 +42,7 @@ See a detailed usage [HERE](https://gist.github.com/ByIvo/ec75b920750ef2aa53e907
 
 ## The config file structure
 
-The config file file always should use JSON syntax. Its default name always is *.project-info.json*, but can be provided another one as second parameter in __from__ method.
+The config file should always be written with JSON syntax. Its default name is *.project-info.json*, but can be provided another one as second parameter in __from__ method.
 
 ### Restricted properties
 
