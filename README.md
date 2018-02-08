@@ -24,8 +24,8 @@ The scan process works in two different phases:
 * The second part is the scan process itself. It will start to read the root config file (that it found in First phase) and also reads all children folder seeking for another config files; If the child folder does not contain a config file, the tree search stops there and continue in siblings.
 
 ## Usage example
-This package have only one method called from.
-The method from has two parameters:
+This package have only one method called __"from"__.
+The method __from__ has only two parameters:
   * __path__: <string> required string to be used as initial path of First search phase.
   * __configFilename__: <string> optional string that reffers to the config filename that will be seeked; The default value is *.project-info.json*
 
